@@ -7,6 +7,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import PlayPage from "./pages/PlayPage";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       <Container maxWidth="xl" sx={{ mt: 4 }}>
         <Router>
           <Routes>
-            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/play" element={<PlayPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
