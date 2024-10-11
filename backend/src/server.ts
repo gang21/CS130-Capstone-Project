@@ -15,8 +15,8 @@ app.use(cors());
 app.use("/session", sessionRoutes);
 
 // MongoDB connection
-const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@fraudninja.eoeqf.mongodb.net/?retryWrites=true&w=majority&appName=FraudNinja`;
-const PORT = process.env.PORT || 3000;
+const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@fraudninja.eoeqf.mongodb.net/fraud_ninja_database?retryWrites=true&w=majority&appName=FraudNinja`;
+const PORT = process.env.PORT || 4000;
 
 mongoose
   .connect(CONNECTION_URL)

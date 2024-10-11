@@ -1,8 +1,9 @@
-import CredentialsModel from "../models/credentials";
+import { User } from "@shared_types";
+import UserModel from "../models/user";
 
 export const getSessions = async (req: any, res: any) => {
   try {
-    const postMessage = await CredentialsModel.find();
+    const postMessage = await UserModel.find();
     res.status(200).json(postMessage);
   } catch (error) {
     if (error instanceof Error) {
@@ -13,10 +14,10 @@ export const getSessions = async (req: any, res: any) => {
   }
 };
 
-export const createSession = async (req: any, res: any) => {
+export const createSession = async (req: { body: User }, res: any) => {
   console.log("in create Session ");
   const credentials = req.body;
-  const newCredentials = new CredentialsModel(credentials);
+  const newCredentials = new UserModel(credentials);
 
   try {
     await newCredentials.save();
