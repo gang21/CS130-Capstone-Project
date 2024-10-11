@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import PlayPage from "./pages/PlayPage";
+import LoginPage from "./pages/Login";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
       <Container maxWidth="xl" sx={{ mt: 4 }}>
         <Router>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/play" element={<PlayPage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
