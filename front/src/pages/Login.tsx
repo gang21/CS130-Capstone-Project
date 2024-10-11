@@ -16,6 +16,7 @@ function LoginPage() {
     values: Credentials,
     { setSubmitting }: FormikHelpers<Credentials>
   ) => {
+    console.log(values);
     try {
       const token = await dispatch(login(values));
       if (token) {
@@ -28,6 +29,7 @@ function LoginPage() {
       setSubmitting(false);
     }
   };
+
   return (
     <Grid2 container justifyContent="center">
       <Grid2 size={{ xs: 12, md: 6, sm: 8, lg: 4 }}>
@@ -46,8 +48,8 @@ function LoginPage() {
           {({ isSubmitting }) => (
             <Form>
               <TextField
-                name="username"
-                label="Nom d'utilisateur"
+                name="email"
+                label="Email"
                 variant="outlined"
                 margin="normal"
                 fullWidth

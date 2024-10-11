@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import sessionRoutes from "./routes/session";
 
 // Load environment variables
 dotenv.config();
@@ -11,6 +12,7 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cors());
+app.use("/session", sessionRoutes);
 
 // MongoDB connection
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@fraudninja.eoeqf.mongodb.net/?retryWrites=true&w=majority&appName=FraudNinja`;
