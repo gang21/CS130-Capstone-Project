@@ -9,6 +9,7 @@ import {
 import HomePage from "./pages/HomePage";
 import PlayPage from "./pages/PlayPage";
 import LoginPage from "./pages/Login";
+import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
             <Route path="/play" element={<PlayPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />

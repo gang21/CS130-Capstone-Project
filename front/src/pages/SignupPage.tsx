@@ -1,5 +1,5 @@
 import { Formik, Form, FormikHelpers } from "formik";
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid2, Typography } from "@mui/material";
 import TextField from "../components/forms/TextField";
 import { Credentials } from "@shared_types";
 import { signup } from "../actions/session";
@@ -17,6 +17,7 @@ function SignupPage() {
   ) => {
     try {
       await signup(values);
+
       enqueueSnackbar("Compte créé avec succès !", {
         variant: "success",
       });
@@ -35,8 +36,8 @@ function SignupPage() {
   };
 
   return (
-    <Grid container justifyContent="center">
-      <Grid item xs={12} sm={8} md={6} lg={4}>
+    <Grid2 container justifyContent="center">
+      <Grid2 size={{ xs: 12, sm: 8, md: 6, lg: 4 }}>
         <Typography variant="h4" align="center" gutterBottom>
           Créer un compte
         </Typography>
@@ -47,8 +48,8 @@ function SignupPage() {
           {({ isSubmitting }) => (
             <Form>
               <TextField
-                name="username"
-                label="Nom d'utilisateur"
+                name="email"
+                label="Email"
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -74,8 +75,8 @@ function SignupPage() {
             </Form>
           )}
         </Formik>
-      </Grid>
-    </Grid>
+      </Grid2>
+    </Grid2>
   );
 }
 

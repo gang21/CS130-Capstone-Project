@@ -1,5 +1,5 @@
 import { Credentials } from "@shared_types";
-import { loginUser } from "../api";
+import { loginUser, signupUser } from "../api";
 import { setToken } from "../reducers/sessionSlice";
 
 export const login = (credentials: Credentials) => async (dispatch: any) => {
@@ -14,16 +14,11 @@ export const login = (credentials: Credentials) => async (dispatch: any) => {
   }
 };
 
-export const signup = (credentials: Credentials) => async (dispatch: any) => {
+export const signup = async (credentials: Credentials) => {
   try {
-    console.log("in signup");
-    // const newUser = await signupUser(values)
-    // // await loginUser(credentials);
-    // dispatch(setToken(token));
-    // console.log(`Set token ${token}`);
-    // return token;
+    await signupUser(credentials);
   } catch (error) {
-    console.error("Login action failed", error);
+    console.error("Signup action failed", error);
     throw error;
   }
 };
