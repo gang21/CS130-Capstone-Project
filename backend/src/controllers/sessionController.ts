@@ -3,6 +3,8 @@ import UserModel from "../models/user";
 import bcrypt from "bcrypt";
 import { UserClient } from "../clients";
 import { UserController } from "./userController";
+import { JWT_KEY } from "../settings";
+import jwt from "jsonwebtoken";
 
 export class SessionController {
   constructor(
@@ -21,6 +23,25 @@ export class SessionController {
         res.status(409).json({ message: "Unknown error" });
       }
     }
+  };
+
+  login = async (req: { body: Credentials }, res: any) => {
+    const credentials = req.body;
+    const user = await this.userController.getByEmail(credentials.email);
+
+    if (!user) {
+      throw new Error("401");
+    }
+    const passwordMatch = await bcrypt.compare(
+      credentials.password,
+      user.password
+    );
+    if (!passwordMatch) {
+      throw new Error("Nom d'utilisateur ou mot de passe incorrect.");
+    }
+    const token = jwt.sign({ sub: user.sub }, JWT_KEY, { algorithm: "HS256" });
+    res.status(200).json(token);
+    // return token;
   };
 
   signup = async (req: { body: Credentials }, res: any) => {

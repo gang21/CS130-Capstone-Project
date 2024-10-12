@@ -16,7 +16,6 @@ function LoginPage() {
     values: Credentials,
     { setSubmitting }: FormikHelpers<Credentials>
   ) => {
-    console.log(values);
     try {
       const token = await dispatch(login(values));
       if (token) {

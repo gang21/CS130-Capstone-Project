@@ -7,7 +7,7 @@ const baseUrl = "http://localhost:4000/session";
 export const loginUser = async (credentials: Credentials): Promise<string> => {
   try {
     const response = await axios.post(`${baseUrl}/login`, credentials);
-    return response.data.token; // Assuming the API returns the token in the 'token' field
+    return response.data;
   } catch (error) {
     throw new Error("Login failed");
   }

@@ -10,7 +10,7 @@ export function createSessionRouter(userClient: UserClient): express.Router {
 
   router.get("/", sessionController.getSessions);
   router.post("/signup", sessionController.signup);
-  // router.post("/login", sessionController.login);
+  router.post("/login", sessionController.login);
 
   return router;
 }
