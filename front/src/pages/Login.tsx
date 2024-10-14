@@ -3,13 +3,12 @@ import { Button, Grid2, Typography } from "@mui/material";
 import TextField from "../components/forms/TextField";
 import { Credentials } from "@shared_types";
 import { login } from "../actions/session";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { AppDispatch } from "..";
+import { useAppDispatch } from "../redux/hook";
 
 function LoginPage() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [error, setError] = useState<string>("");
 
   const handleOnSubmit = async (

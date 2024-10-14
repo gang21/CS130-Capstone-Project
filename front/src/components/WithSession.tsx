@@ -18,6 +18,7 @@ export function WithSession({
   useEffect(() => {
     if (token) {
       checkUser(token).then((user) => {
+        console.log("ya un user ?", user);
         if (user) {
           dispatch(setUser(user));
           dispatch(setIsLoggedIn(true));

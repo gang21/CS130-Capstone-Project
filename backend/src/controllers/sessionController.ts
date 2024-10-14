@@ -1,5 +1,4 @@
 import { Credentials, User } from "@shared_types";
-import UserModel from "../models/user";
 import bcrypt from "bcrypt";
 import { UserClient } from "../clients";
 import { UserController } from "./userController";
@@ -7,17 +6,12 @@ import { JWT_KEY } from "../settings";
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
-interface AuthenticatedRequest extends Request {
-  user?: { sub: string }; // 'user' is optional
-}
-
 export class SessionController {
   constructor(
     private readonly client: UserClient,
     private readonly userController: UserController
   ) {}
 
-  // Middleware to verify the JWT and attach user to the request
   verifyAuthAndAttachUser = (
     req: Request,
     res: Response,
@@ -40,13 +34,24 @@ export class SessionController {
     }
   };
 
-  checkUser = async (req: { body: User }, res: any) => {
+  checkUser = async (req: Request, res: Response): Promise<void> => {
     try {
-      const user = req.body;
-      if (user) return await res.status(200).send(user);
-      return await res.status(400).send();
+      const userSub = (req as any).user?.sub;
+      if (userSub) {
+        const user = await this.userController.getBySub(userSub);
+        if (user) {
+          res.status(200).json(user);
+          return;
+        }
+        res.status(404).send("User not found");
+        return;
+      }
+      res.status(400).send("User sub not found");
+      return;
     } catch (error: any) {
-      return await res.status(500).send();
+      console.error(error);
+      res.status(500).send("Server error");
+      return;
     }
   };
 

@@ -1,6 +1,6 @@
 import express from "express";
 import { SessionController } from "../controllers/sessionController";
-import { UserClient } from "../clients/userClient"; // Ensure the correct client is imported
+import { UserClient } from "../clients/userClient";
 import { UserController } from "../controllers/userController";
 
 export function createSessionRouter(userClient: UserClient): express.Router {

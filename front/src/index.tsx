@@ -3,12 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-import { store } from "./redux/configureStore";
-
-// Types for use in your app
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
