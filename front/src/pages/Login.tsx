@@ -22,7 +22,7 @@ function LoginPage() {
       }
     } catch (error) {
       console.error("Error when trying to connect", error);
-      setError("Mot de passe ou identifiant incorrect");
+      setError("Password or email incorrect");
     } finally {
       setSubmitting(false);
     }
@@ -32,7 +32,7 @@ function LoginPage() {
     <Grid2 container justifyContent="center">
       <Grid2 size={{ xs: 12, md: 6, sm: 8, lg: 4 }}>
         <Typography variant="h4" align="center" gutterBottom>
-          Connexion
+          Login
         </Typography>
         {error && (
           <Typography variant="caption" color="red">
@@ -56,7 +56,7 @@ function LoginPage() {
               <TextField
                 type="password"
                 name="password"
-                label="Mot de passe"
+                label="Password"
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -68,14 +68,15 @@ function LoginPage() {
                 fullWidth
                 disabled={isSubmitting}
               >
-                Se connecter
+                Login
               </Button>
             </Form>
           )}
         </Formik>
 
-        <Grid2>
-          Si vous n'avez pas de compte, cliquez <Link to="/signup">ici</Link>
+        <Grid2 mt={2}>
+          If you don't already have an account, click{" "}
+          <Link to="/signup">here</Link>
         </Grid2>
       </Grid2>
     </Grid2>

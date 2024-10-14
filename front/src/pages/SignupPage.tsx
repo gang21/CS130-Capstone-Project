@@ -18,18 +18,15 @@ function SignupPage() {
     try {
       await signup(values);
 
-      enqueueSnackbar("Compte créé avec succès !", {
+      enqueueSnackbar("Account created with success !", {
         variant: "success",
       });
       navigate("/login");
     } catch (error) {
       console.error("Error when trying to create the account", error);
-      enqueueSnackbar(
-        "Une erreur s'est produite durant la création de votre compte",
-        {
-          variant: "error",
-        }
-      );
+      enqueueSnackbar("Error when trying to create the account", {
+        variant: "error",
+      });
     } finally {
       setSubmitting(false);
     }
@@ -39,7 +36,7 @@ function SignupPage() {
     <Grid2 container justifyContent="center">
       <Grid2 size={{ xs: 12, sm: 8, md: 6, lg: 4 }}>
         <Typography variant="h4" align="center" gutterBottom>
-          Créer un compte
+          Create an account
         </Typography>
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -58,7 +55,7 @@ function SignupPage() {
               <TextField
                 type="password"
                 name="password"
-                label="Mot de passe"
+                label="Password"
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -70,7 +67,7 @@ function SignupPage() {
                 fullWidth
                 disabled={isSubmitting}
               >
-                S'inscrire
+                Sign up
               </Button>
             </Form>
           )}
