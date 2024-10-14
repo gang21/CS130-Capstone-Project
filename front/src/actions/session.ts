@@ -1,6 +1,6 @@
 import { Credentials } from "@shared_types";
 import { loginUser, signupUser } from "../api";
-import { setToken } from "../reducers/sessionSlice";
+import { setToken } from "../redux/slices/sessionSlice";
 
 export const login = (credentials: Credentials) => async (dispatch: any) => {
   try {

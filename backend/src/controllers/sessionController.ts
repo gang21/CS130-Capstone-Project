@@ -5,43 +5,77 @@ import { UserClient } from "../clients";
 import { UserController } from "./userController";
 import { JWT_KEY } from "../settings";
 import jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
+
+interface AuthenticatedRequest extends Request {
+  user?: { sub: string }; // 'user' is optional
+}
 
 export class SessionController {
   constructor(
     private readonly client: UserClient,
     private readonly userController: UserController
   ) {}
-  getSessions = async (req: any, res: any) => {
-    console.log("in the getSessions function");
+
+  // Middleware to verify the JWT and attach user to the request
+  verifyAuthAndAttachUser = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): void => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      res.status(401).send("Unauthorized");
+      return;
+    }
+    const token = authHeader.split(" ")[1];
     try {
-      const postMessage = await UserModel.find();
-      res.status(200).json(postMessage);
-    } catch (error) {
-      if (error instanceof Error) {
-        res.status(409).json({ message: error.message });
-      } else {
-        res.status(409).json({ message: "Unknown error" });
-      }
+      const decoded = jwt.verify(token, JWT_KEY);
+      (req as any).user = { sub: (decoded as any).sub };
+      next();
+    } catch (err) {
+      res.status(401).send("Invalid token");
+      return;
+    }
+  };
+
+  checkUser = async (req: { body: User }, res: any) => {
+    try {
+      const user = req.body;
+      if (user) return await res.status(200).send(user);
+      return await res.status(400).send();
+    } catch (error: any) {
+      return await res.status(500).send();
     }
   };
 
   login = async (req: { body: Credentials }, res: any) => {
-    const credentials = req.body;
-    const user = await this.userController.getByEmail(credentials.email);
+    try {
+      const credentials = req.body;
+      const user = await this.userController.getByEmail(credentials.email);
 
-    if (!user) {
-      throw new Error("401");
+      if (!user) {
+        return res.status(401).json({ message: "User not found" });
+      }
+
+      const passwordMatch = await bcrypt.compare(
+        credentials.password,
+        user.password
+      );
+      if (!passwordMatch) {
+        return res
+          .status(401)
+          .json({ message: "Incorrect username or password" });
+      }
+
+      const token = jwt.sign({ sub: user.sub }, JWT_KEY, {
+        algorithm: "HS256",
+      });
+      return res.status(200).json(token);
+    } catch (error: any) {
+      return res.status(500).json({ message: "Server error" });
     }
-    const passwordMatch = await bcrypt.compare(
-      credentials.password,
-      user.password
-    );
-    if (!passwordMatch) {
-      throw new Error("Nom d'utilisateur ou mot de passe incorrect.");
-    }
-    const token = jwt.sign({ sub: user.sub }, JWT_KEY, { algorithm: "HS256" });
-    res.status(200).json(token);
-    // return token;
   };
 
   signup = async (req: { body: Credentials }, res: any) => {

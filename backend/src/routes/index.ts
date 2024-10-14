@@ -1,2 +1,2 @@
 export * from "./sessionRoutes";
-export * from "./userroutes";
+export * from "./userRoutes";

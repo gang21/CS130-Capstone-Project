@@ -8,9 +8,13 @@ export function createSessionRouter(userClient: UserClient): express.Router {
   const sessionController = new SessionController(userClient, userController);
   const router = express.Router();
 
-  router.get("/", sessionController.getSessions);
   router.post("/signup", sessionController.signup);
   router.post("/login", sessionController.login);
+  router.get(
+    "/checkUser",
+    sessionController.verifyAuthAndAttachUser,
+    sessionController.checkUser
+  );
 
   return router;
 }

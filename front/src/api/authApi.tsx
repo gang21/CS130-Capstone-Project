@@ -23,3 +23,14 @@ export const signupUser = async (
     throw new Error("Login failed");
   }
 };
+
+export const checkUser = async (token: string): Promise<User | null> => {
+  try {
+    const { data } = await axios.get(`${baseUrl}/checkUser`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  } catch {
+    return null;
+  }
+};
