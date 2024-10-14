@@ -5,7 +5,7 @@ import { UserController } from "../controllers/userController";
 
 export function createSessionRouter(userClient: UserClient): express.Router {
   const userController = new UserController(userClient);
-  const sessionController = new SessionController(userClient, userController);
+  const sessionController = new SessionController(userController);
   const router = express.Router();
 
   router.post("/signup", sessionController.signup);

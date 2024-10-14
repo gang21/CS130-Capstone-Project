@@ -1,16 +1,12 @@
 import { Credentials, User } from "@shared_types";
 import bcrypt from "bcrypt";
-import { UserClient } from "../clients";
 import { UserController } from "./userController";
 import { JWT_KEY } from "../settings";
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
 export class SessionController {
-  constructor(
-    private readonly client: UserClient,
-    private readonly userController: UserController
-  ) {}
+  constructor(private readonly userController: UserController) {}
 
   verifyAuthAndAttachUser = (
     req: Request,
