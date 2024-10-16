@@ -18,6 +18,4 @@ export const MONGO_PASSWORD = loadFromEnv("MONGO_PASSWORD");
 
 export const MONGO_USERNAME = loadFromEnv("MONGO_USERNAME");
 
-export const ORIGINS = /./;
-
 export const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
