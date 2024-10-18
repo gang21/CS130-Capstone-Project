@@ -45,7 +45,7 @@ function HamburgerMenu({ onSignOutClick }: HamburgerMenuProps) {
           <NavButton label="Profile" href="/" inHamburger notImplemented />
         </MenuItem>
         <MenuItem onClick={onSignOutClick}>
-          <Button>Déconnexion</Button>
+          <Button>Logout</Button>
         </MenuItem>
       </Menu>
     </div>

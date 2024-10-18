@@ -20,7 +20,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onSignOutClick }) => {
           component="div"
           sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}
         >
-          <NavButton href="/" label="Logo" />
+          <NavButton href="/" label="Fraud Ninja" />
           {isLoggedIn && (
             <LogoutIcon onClick={onSignOutClick} sx={{ cursor: "pointer" }} />
           )}
