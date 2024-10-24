@@ -98,6 +98,7 @@ function SignupPage() {
                 fullWidth
               />
               <Button
+                sx={{ mt: 2 }}
                 type="submit"
                 variant="contained"
                 color="primary"
