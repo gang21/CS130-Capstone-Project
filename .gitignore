@@ -75,3 +75,6 @@ ts warning.txt
 
 .vscode/*
 !.vscode/settings.json
+
+# data
+*.csv
