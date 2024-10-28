@@ -1,9 +1,7 @@
-import { getAlertTitleUtilityClass } from "@mui/material";
 import { Email, Text } from "@shared_types";
 import {
     Collection, 
     Db, 
-    DeleteResult,
     ObjectId,
 } from "mongodb";
 
