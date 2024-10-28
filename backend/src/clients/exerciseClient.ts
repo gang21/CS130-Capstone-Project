@@ -23,7 +23,7 @@ export class ExerciseClient{
         this.textCollection = db.collection("text_data");
     }
 
-    async getAllMessages(): Promise<(EmailDocument | TextDocument) []> {
+    async getAllExercises(): Promise<(EmailDocument | TextDocument) []> {
         const [emails, texts] = await Promise.all([
             this.emailCollection.find().toArray(), 
             this.textCollection.find().toArray()
@@ -47,8 +47,8 @@ export class ExerciseClient{
     }
 
     // main function to grab a random message to display
-    async getRandomMessage(): Promise<EmailDocument | TextDocument | null> {
-        const allData = await this.getAllMessages();
+    async getRandomExercise(): Promise<EmailDocument | TextDocument | null> {
+        const allData = await this.getAllExercises();
 
         //check if there's any available data
         if (allData.length === 0) {
