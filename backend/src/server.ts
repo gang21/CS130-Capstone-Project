@@ -3,7 +3,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { PORT } from "./settings";
 import { initializeClients } from "./server/db";
-import { createExerciseRouter, createSessionRouter, createUserRouter } from "./routes";
+import {
+  createExerciseRouter,
+  createSessionRouter,
+  createUserRouter,
+} from "./routes";
 
 dotenv.config();
 
@@ -21,29 +25,6 @@ initializeClients()
   })
   .catch((error) => console.log("Error connecting to MongoDB:", error));
 
-// // MongoDB connection and UserClient initialization
-// const CONNECTION_URL = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@fraudninja.eoeqf.mongodb.net/fraud_ninja_database?retryWrites=true&w=majority&appName=FraudNinja`;
-// const client = new MongoClient(CONNECTION_URL);
-
-// let db: Db;
-// let userClient: UserClient;
-
-// client
-//   .connect()
-//   .then(() => {
-//     db = client.db();
-//     userClient = new UserClient(db);
-//     console.log("MongoDB connected and UserClient initialized");
-
-//     app.listen(PORT || 4000, () => {
-//       console.log(`Server running on port ${PORT}...`);
-//     });
-//   })
-//   .catch((error) => console.log("Error connecting to MongoDB:", error));
-
 // Middlewares
 app.use(express.json());
 app.use(cors());
-
-// Define routes using session routes
-// app.use("/session", sessionRoutes);
