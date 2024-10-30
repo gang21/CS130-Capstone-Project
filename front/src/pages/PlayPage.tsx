@@ -1,4 +1,8 @@
 import TinderCard from "react-tinder-card";
+import { Exercise } from "@shared_types";
+import { useEffect, useRef, useState } from "react";
+import { useAppSelector } from "../redux/hook";
+import ApiSdk from "../api/apiSdk";
 
 const onSwipe = (direction: string) => {
   console.log("You swiped: " + direction);
@@ -10,6 +14,22 @@ const onCardLeftScreen = () => {
 
 // TODO: Polish this. See https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js
 function PlayPage() {
+  const [exercise, setExercise] = useState<Exercise>();
+  const hasFetched = useRef(false);
+  const api = new ApiSdk();
+  const { token } = useAppSelector((state) => state.session);
+
+  useEffect(() => {
+    if (!hasFetched.current) {
+      hasFetched.current = true;
+      api.getOneRandomExercise(token).then((exercise) => {
+        setExercise(exercise);
+        console.log(exercise);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+
   return (
     <TinderCard
       onSwipe={onSwipe}
