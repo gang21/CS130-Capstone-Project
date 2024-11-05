@@ -14,7 +14,6 @@ export class ResourceController {
   ): Promise<void> => {
     try {
       const resources = await this.client.getAll();
-      console.log(resources);
       if (!resources) {
         res.status(404).json({ error: "Resources not found" });
         return;
@@ -22,7 +21,7 @@ export class ResourceController {
       res.json(resources);
       return;
     } catch (error) {
-      next(error); // Passes errors to the error-handling middleware
+      next(error);
     }
   };
 
@@ -52,15 +51,27 @@ export class ResourceController {
   };
 
   create = async (
-    req: { body: Omit<Resource, "_id"> },
+    req: Request,
     res: Response,
     next: NextFunction
   ): Promise<void> => {
     try {
-      const resource = req.body;
+      const resourceData = req.body;
+      const imageFile = req.file;
+      // Convert image buffer to base64 if it exists
+      const imageBase64 = imageFile
+        ? imageFile.buffer.toString("base64")
+        : undefined;
+
+      const newResource = {
+        ...resourceData,
+        image: imageBase64, // Store as base64 string
+      };
+
       const createdResource: InsertOneResult = await this.client.create(
-        resource
+        newResource
       );
+
       res.status(201).json({
         ...createdResource,
         insertedId: encodeHex(createdResource.insertedId),

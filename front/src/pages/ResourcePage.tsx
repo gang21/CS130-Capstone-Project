@@ -34,7 +34,9 @@ const ResourcePage: React.FC = () => {
               category={resource.category}
               content={resource.content}
               links={resource.links}
-              imageUrl={resource?.imageUrl ? resource?.imageUrl : ""} // Pass the image URL prop
+              imageUrl={
+                resource.image ? `data:image/jpeg;base64,${resource.image}` : ""
+              }
             />
           </Grid2>
         ))}

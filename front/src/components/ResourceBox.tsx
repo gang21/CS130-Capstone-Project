@@ -45,13 +45,17 @@ const ResourceBox: React.FC<ResourceBoxProps> = ({
           typeof imageUrl === "string"
             ? imageUrl
             : `data:image/jpeg;base64,${imageUrl}`
-        } // Convert Buffer to Base64
+        }
         alt={category}
       />
 
       {/* Content */}
       <CardContent
-        sx={{ flexGrow: 1, overflow: "hidden", textOverflow: "ellipsis" }}
+        sx={{
+          flexGrow: 1,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
       >
         <Typography
           variant="h5"
@@ -63,26 +67,28 @@ const ResourceBox: React.FC<ResourceBoxProps> = ({
         </Typography>
         <Typography variant="body2">{displayedContent}</Typography>
 
-        <List>
-          {links.map((link, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemIcon>
-                <LinkIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>
-                <Link
-                  href={link}
-                  target="_blank"
-                  rel="noopener"
-                  underline="hover"
-                  color="secondary"
-                >
-                  {link}
-                </Link>
-              </ListItemText>
-            </ListItem>
-          ))}
-        </List>
+        {links && (
+          <List>
+            {links.map((link, index) => (
+              <ListItem key={index} disablePadding>
+                <ListItemIcon>
+                  <LinkIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>
+                  <Link
+                    href={link}
+                    target="_blank"
+                    rel="noopener"
+                    underline="hover"
+                    color="secondary"
+                  >
+                    {link}
+                  </Link>
+                </ListItemText>
+              </ListItem>
+            ))}
+          </List>
+        )}
       </CardContent>
     </Card>
   );

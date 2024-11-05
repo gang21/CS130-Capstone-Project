@@ -1,6 +1,9 @@
 import express from "express";
+import multer from "multer";
 import { ResourceController } from "../controllers";
 import { ResourceClient } from "../clients/resourceClient";
+
+const upload = multer();
 
 export function createResourceRouter(
   resourceClient: ResourceClient
@@ -9,7 +12,7 @@ export function createResourceRouter(
   const router = express.Router();
 
   router.get("/all", resourceController.getAll);
-  router.post("/", resourceController.create);
+  router.post("/", upload.single("image"), resourceController.create);
 
   return router;
 }

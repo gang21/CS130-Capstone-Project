@@ -6,7 +6,7 @@ export const resourceSchema = z.object({
   category: scamCategory,
   content: z.string().max(500),
   links: z.array(z.string()),
-  imageUrl: z.string().optional(),
+  image: z.instanceof(Buffer).optional(),
 });
 
 export type Resource = z.infer<typeof resourceSchema>;

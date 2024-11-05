@@ -78,7 +78,7 @@ function PlayPage() {
   const canSwipe = currentIndex >= 0;
 
   return (
-    <Container>
+    <Container className="restrictedScroll">
       <Container className="cardContainer">
         {db.map((card, index) => (
           <TinderCard
