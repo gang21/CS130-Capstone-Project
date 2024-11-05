@@ -16,7 +16,7 @@ function PlayPage() {
   useEffect(() => {
     if (!hasFetched.current) {
       hasFetched.current = true;
-      api.getRandomExercises(token, 5).then((exercises) => {
+      api.getRandomExercises(token).then((exercises) => {
         setExercises(exercises);
       });
     }
