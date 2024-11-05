@@ -1,5 +1,5 @@
 import { Resource } from "@shared_types";
-import { InsertOneResultWithoutId, decodeHex, encodeHex } from "../utils";
+import { decodeHex, encodeHex } from "../utils";
 import { ResourceClient } from "../clients";
 import { InsertOneResult } from "mongodb";
 import { Request, NextFunction, Response } from "express";
@@ -13,12 +13,13 @@ export class ResourceController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const exercises = await this.client.getAll();
-      if (!exercises) {
+      const resources = await this.client.getAll();
+      console.log(resources);
+      if (!resources) {
         res.status(404).json({ error: "Resources not found" });
         return;
       }
-      res.json(exercises);
+      res.json(resources);
       return;
     } catch (error) {
       next(error); // Passes errors to the error-handling middleware
@@ -51,17 +52,16 @@ export class ResourceController {
   };
 
   create = async (
-    req: Request,
+    req: { body: Omit<Resource, "_id"> },
     res: Response,
     next: NextFunction
   ): Promise<void> => {
     try {
-      const { resource } = req.body;
-      console.log("body", resource);
+      const resource = req.body;
       const createdResource: InsertOneResult = await this.client.create(
         resource
       );
-      res.json({
+      res.status(201).json({
         ...createdResource,
         insertedId: encodeHex(createdResource.insertedId),
       });

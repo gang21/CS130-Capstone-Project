@@ -4,13 +4,11 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  Chip,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Link,
-  Box,
 } from "@mui/material";
 import LinkIcon from "@mui/icons-material/Link";
 
