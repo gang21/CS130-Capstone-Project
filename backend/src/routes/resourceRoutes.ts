@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import { ResourceController } from "../controllers";
-import { ResourceClient } from "../clients/resourceClient";
+import type { ResourceClient } from "../clients/resourceClient";
 
 const upload = multer();
 

@@ -1,6 +1,6 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { type AxiosInstance } from "axios";
 import { envConfigs } from "../configs/env";
-import { Credentials, Exercise, Resource, User } from "@shared_types";
+import type { Credentials, Exercise, Resource, User } from "@shared_types";
 
 class ApiSdk {
   private readonly http: AxiosInstance;

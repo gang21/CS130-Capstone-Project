@@ -1,9 +1,9 @@
-import { Resource } from "@shared_types";
+import type { Resource } from "@shared_types";
 import {
-  Collection,
-  Db,
-  DeleteResult,
-  InsertOneResult,
+  type Collection,
+  type Db,
+  type DeleteResult,
+  type InsertOneResult,
   ObjectId,
 } from "mongodb";
 

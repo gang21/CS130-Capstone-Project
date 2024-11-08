@@ -1,7 +1,6 @@
 import { Typography, Container } from "@mui/material";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import BackButton from "./BackButton";
-import React from "react";
 
 interface ContainerPageProps {
   title: string;

@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type React from "react";
 import { Grid2 } from "@mui/material";
 import ResourceBox from "../components/ResourceBox";
 import ContainerPage from "../components/ContainerPage";
-import { Resource } from "@shared_types";
+import type { Resource } from "@shared_types";
 import ApiSdk from "../api/apiSdk";
 import { useAppSelector } from "../redux/hook";
 import FullScreenSpinner from "../components/FullScreenSpinner";
@@ -28,8 +29,8 @@ const ResourcePage: React.FC = () => {
   return (
     <ContainerPage title="Scam Resources">
       <Grid2 container spacing={2}>
-        {resources.map((resource, index) => (
-          <Grid2 size={6} columns={2} flexDirection="row" key={index}>
+        {resources.map((resource) => (
+          <Grid2 size={6} columns={2} flexDirection="row" key={resource._id}>
             <ResourceBox
               category={resource.category}
               content={resource.content}

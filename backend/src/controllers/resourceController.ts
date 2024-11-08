@@ -1,8 +1,8 @@
-import { Resource } from "@shared_types";
+import type { Resource } from "@shared_types";
 import { decodeHex, encodeHex } from "../utils";
-import { ResourceClient } from "../clients";
-import { InsertOneResult } from "mongodb";
-import { Request, NextFunction, Response } from "express";
+import type { ResourceClient } from "../clients";
+import type { InsertOneResult } from "mongodb";
+import type { Request, NextFunction, Response } from "express";
 
 export class ResourceController {
   constructor(private readonly client: ResourceClient) {}
