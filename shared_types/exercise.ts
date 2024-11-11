@@ -1,4 +1,4 @@
-import { scamCategories } from './scamCategory';
+import type { scamCategories } from './scamCategory';
 
 export type Exercise = {
   type: string;
