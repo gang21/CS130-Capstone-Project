@@ -1,16 +1,18 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, type MouseEvent } from 'react';
 import NavButton from './NavButton';
-import { Button } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
+import { deepPurple } from '@mui/material/colors';
+import type { User } from '@shared_types';
 
 interface HamburgerMenuProps {
+  userInfo: User;
   onSignOutClick: () => void;
 }
 
-function HamburgerMenu({ onSignOutClick }: HamburgerMenuProps) {
+function HamburgerMenu({ onSignOutClick, userInfo }: HamburgerMenuProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = !!anchorEl;
 
@@ -23,24 +25,12 @@ function HamburgerMenu({ onSignOutClick }: HamburgerMenuProps) {
     <div>
       <IconButton onClick={handleClick} disableRipple>
         <div className=''>
-          <MenuIcon fontSize='large' style={{ color: '#fdf8f1' }} />
+          <Avatar sx={{ bgcolor: deepPurple[500] }}>
+            {userInfo.username[0].toUpperCase()}
+          </Avatar>
         </div>
       </IconButton>
-      <Menu
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        PaperProps={{
-          style: {
-            width: 'fit-content',
-            zIndex: '99999',
-          },
-        }}
-      >
+      <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
         <MenuItem onClick={handleClose}>
           <NavButton label='Profile' href='/' inHamburger notImplemented />
         </MenuItem>

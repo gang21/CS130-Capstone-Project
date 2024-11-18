@@ -1,5 +1,5 @@
 import type React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Avatar } from '@mui/material';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 import { useAppSelector } from '../../redux/hook';
 import NavButton from './NavButton';
 import HamburgerMenu from './HamburgerMenu';
@@ -30,18 +30,21 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onSignOutClick }) => {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <NavButton href='/play' label='Play Game' />
             <NavButton href='/resources' label='Resources' />
+            <NavButton href='/Leaderboard' label='Leaderboard' />
           </div>
         )}
 
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton color='inherit'>
-            <Avatar />
-          </IconButton>
-          <Typography variant='body1' sx={{ mr: 1 }}>
-            {userInfo.username}
-          </Typography>
-        </div>
-        {isLoggedIn && <HamburgerMenu onSignOutClick={onSignOutClick} />}
+        {isLoggedIn && (
+          <>
+            <HamburgerMenu
+              onSignOutClick={onSignOutClick}
+              userInfo={userInfo}
+            />
+            <Typography variant='body1' sx={{ mr: 1 }}>
+              {userInfo.username}
+            </Typography>
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );
