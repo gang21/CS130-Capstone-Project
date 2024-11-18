@@ -4,6 +4,7 @@ import { useAppSelector } from '../../redux/hook';
 import NavButton from './NavButton';
 import HamburgerMenu from './HamburgerMenu';
 import LogoutIcon from '@mui/icons-material/Logout';
+import SchoolIcon from '@mui/icons-material/School';
 
 interface AppHeaderProps {
   onSignOutClick: () => void;
@@ -40,8 +41,16 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onSignOutClick }) => {
               onSignOutClick={onSignOutClick}
               userInfo={userInfo}
             />
-            <Typography variant='body1' sx={{ mr: 1 }}>
+            <Typography
+              variant='body1'
+              sx={{ mr: 1, display: 'flex', alignItems: 'center' }}
+            >
               {userInfo.username}
+              {userInfo.graduated && (
+                <SchoolIcon
+                  sx={{ ml: 0.5, color: '#c2b5d9', verticalAlign: 'middle' }}
+                />
+              )}
             </Typography>
           </>
         )}

@@ -10,13 +10,8 @@ import {
 } from '@mui/material';
 import type { User } from '@shared_types';
 
-interface MockUser {
-  username: string;
-  overallScore: number;
-}
-
 type LeaderBoardProps = {
-  users: MockUser[]; // To be updated
+  users: User[];
   currentUser: string; // username of the current user
 };
 
@@ -24,7 +19,7 @@ const LeaderBoard: React.FC<LeaderBoardProps> = ({ users, currentUser }) => {
   // Sort users by overallScore in descending order and assign ranks
   const rankedUsers = [...users]
     .sort((a, b) => b.overallScore - a.overallScore) // Sort by overallScore descending
-    .map((user, index, sortedArray) => ({
+    .map((user, _, sortedArray) => ({
       ...user,
       rank:
         sortedArray.findIndex((u) => u.overallScore === user.overallScore) + 1, // Handle ties in rank
