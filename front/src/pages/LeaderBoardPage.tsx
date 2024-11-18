@@ -5,7 +5,6 @@ import LeaderBoard from '../components/LeaderBoard';
 import type { User } from '@shared_types';
 import { useAppSelector } from '../redux/hook';
 import FullScreenSpinner from '../components/FullScreenSpinner';
-import { Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PlayPrompt from '../components/PlayPrompt';
 
