@@ -18,26 +18,61 @@ type LeaderBoardProps = {
 const LeaderBoard: React.FC<LeaderBoardProps> = ({ users, currentUser }) => {
   // Sort users by overallScore in descending order and assign ranks
   const rankedUsers = [...users]
-    .sort((a, b) => b.overallScore - a.overallScore) // Sort by overallScore descending
+    .sort((a, b) => b.overallScore - a.overallScore)
     .map((user, _, sortedArray) => ({
       ...user,
       rank:
-        sortedArray.findIndex((u) => u.overallScore === user.overallScore) + 1, // Handle ties in rank
+        sortedArray.findIndex((u) => u.overallScore === user.overallScore) + 1,
     }));
 
   return (
-    <TableContainer component={Paper} sx={{ margin: 'auto', marginTop: 4 }}>
+    <TableContainer
+      component={Paper}
+      sx={{
+        margin: 'auto',
+        marginTop: 4,
+        background: 'linear-gradient(135deg, #ff9a9e, #fad0c4)',
+        borderRadius: 3,
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+      }}
+    >
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell align='center'>
-              <b>Rank</b>
+            <TableCell
+              align='center'
+              sx={{
+                fontWeight: 'bold',
+                fontSize: '1.2rem',
+                color: '#fff',
+                backgroundColor: '#ff6f61',
+                borderRadius: '8px 0 0 8px',
+              }}
+            >
+              Rank
             </TableCell>
-            <TableCell align='center'>
-              <b>Username</b>
+            <TableCell
+              align='center'
+              sx={{
+                fontWeight: 'bold',
+                fontSize: '1.2rem',
+                color: '#fff',
+                backgroundColor: '#ff6f61',
+              }}
+            >
+              Username
             </TableCell>
-            <TableCell align='center'>
-              <b>Score</b>
+            <TableCell
+              align='center'
+              sx={{
+                fontWeight: 'bold',
+                fontSize: '1.2rem',
+                color: '#fff',
+                backgroundColor: '#ff6f61',
+                borderRadius: '0 8px 8px 0',
+              }}
+            >
+              Score
             </TableCell>
           </TableRow>
         </TableHead>
@@ -48,21 +83,38 @@ const LeaderBoard: React.FC<LeaderBoardProps> = ({ users, currentUser }) => {
               sx={{
                 backgroundColor:
                   user.username === currentUser
-                    ? 'rgba(63, 81, 181, 0.1)'
-                    : 'inherit',
-                '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.04)' },
+                    ? 'rgba(63, 81, 181, 0.2)'
+                    : 'rgba(255, 255, 255, 0.9)',
+                transition: 'background-color 0.3s ease',
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                },
               }}
             >
-              <TableCell align='center'>{user.rank}</TableCell>
+              <TableCell
+                align='center'
+                sx={{ fontSize: '1.1rem', fontWeight: 'bold' }}
+              >
+                {user.rank === 1
+                  ? '🥇'
+                  : user.rank === 2
+                    ? '🥈'
+                    : user.rank === 3
+                      ? '🥉'
+                      : user.rank}
+              </TableCell>
               <TableCell
                 align='center'
                 sx={{
+                  fontSize: '1.1rem',
                   fontWeight: user.username === currentUser ? 'bold' : 'normal',
                 }}
               >
                 {user.username}
               </TableCell>
-              <TableCell align='center'>{user.overallScore}</TableCell>
+              <TableCell align='center' sx={{ fontSize: '1.1rem' }}>
+                {user.overallScore}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

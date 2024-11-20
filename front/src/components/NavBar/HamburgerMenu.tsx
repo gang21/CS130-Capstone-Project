@@ -20,26 +20,27 @@ function HamburgerMenu({ onSignOutClick, userInfo }: HamburgerMenuProps) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => setAnchorEl(null);
-
-  return (
-    <div>
-      <IconButton onClick={handleClick} disableRipple>
-        <div className=''>
-          <Avatar sx={{ bgcolor: deepPurple[500] }}>
-            {userInfo.username[0].toUpperCase()}
-          </Avatar>
-        </div>
-      </IconButton>
-      <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
-        <MenuItem onClick={handleClose}>
-          <NavButton label='Profile' href='/' inHamburger notImplemented />
-        </MenuItem>
-        <MenuItem onClick={onSignOutClick}>
-          <Button>Logout</Button>
-        </MenuItem>
-      </Menu>
-    </div>
-  );
+  if (userInfo.username)
+    return (
+      <div>
+        <IconButton onClick={handleClick} disableRipple>
+          <div className=''>
+            <Avatar sx={{ bgcolor: deepPurple[500] }}>
+              {userInfo.username[0].toUpperCase()}
+            </Avatar>
+          </div>
+        </IconButton>
+        <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
+          <MenuItem onClick={handleClose}>
+            <NavButton label='Profile' href='/' inHamburger notImplemented />
+          </MenuItem>
+          <MenuItem onClick={onSignOutClick}>
+            <Button>Logout</Button>
+          </MenuItem>
+        </Menu>
+      </div>
+    );
+  else return <></>;
 }
 
 export default HamburgerMenu;

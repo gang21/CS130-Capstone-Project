@@ -29,7 +29,7 @@ function LeaderBoardPage() {
   if (!hasFetched) return <FullScreenSpinner />;
 
   return (
-    <ContainerPage title={'LeaderBoard'}>
+    <ContainerPage title={'🏆 Leaderboard 🏆'}>
       {userInfo.overallScore <= 0 && (
         <PlayPrompt onPlay={() => navigate('/play')} />
       )}
