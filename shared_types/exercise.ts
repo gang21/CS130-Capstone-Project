@@ -1,12 +1,15 @@
-import type { scamCategories } from './scamCategory';
+import type { scamCategories, ScamCategory } from './scamCategory';
+import { z } from 'zod';
+import { scamCategory } from './scamCategory';
 
-export type Exercise = {
-  type: string;
-  label: string;
-  category: scamCategories;
-  message: string;
-  feedback: string;
-};
+export const exerciseSchema = z.object({
+  type: z.string(),
+  label: z.string(),
+  message: z.string(),
+  feedback: z.string(),
+});
+
+export type Exercise = z.infer<typeof exerciseSchema>;
 
 export type Email = Exercise & {
   emailSender: string;
