@@ -28,13 +28,15 @@ describe('PlayPage', () => {
     const initialState = {
       session: { token: 'mock-token' },
       user: {
-        _id: 'mock-id',
-        email: 'mock-email',
-        password: 'mock-password',
-        sub: 'mock-sub',
-        username: 'mock-username',
-        overallScore: 0,
-        graduated: false,
+        userInfo: {
+          _id: 'mock-id',
+          email: 'mock-email',
+          password: 'mock-password',
+          sub: 'mock-sub',
+          username: 'mock-username',
+          overallScore: 0,
+          graduated: false,
+        },
       },
     };
     const store = mockStore(initialState);
