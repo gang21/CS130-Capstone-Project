@@ -1,20 +1,22 @@
-import type { scamCategories, ScamCategory } from './scamCategory';
+import { ScamCategory } from './scamCategory';
 import { z } from 'zod';
-import { scamCategory } from './scamCategory';
 
 export const exerciseSchema = z.object({
   type: z.string(),
-  label: z.string(),
+  scam: z.boolean(),
+  category: z.nativeEnum(ScamCategory),
   message: z.string(),
   feedback: z.string(),
 });
 
 export type Exercise = z.infer<typeof exerciseSchema>;
 
-export type Email = Exercise & {
-  emailSender: string;
-};
+export const emailSchema = exerciseSchema.extend({
+  emailSender: z.string(),
+});
+export type Email = z.infer<typeof emailSchema>;
 
-export type Text = Exercise & {
-  phoneNumber: string;
-};
+export const textSchema = exerciseSchema.extend({
+  phoneNumber: z.string(),
+});
+export type Text = z.infer<typeof textSchema>;
