@@ -43,6 +43,33 @@ class ApiSdk {
     }
   };
 
+  getAllUsers = async (token: string): Promise<User[]> => {
+    try {
+      const { data } = await this.http.get('users/', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return data;
+    } catch {
+      return [];
+    }
+  };
+
+  updateScoreUser = async (
+    token: string,
+    id: string,
+    user: Partial<User>,
+  ): Promise<User | null> => {
+    try {
+      const { data } = await this.http.put(`users/${id}`, user, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return data;
+    } catch (error) {
+      console.error('Error updating user score:', error);
+      return null;
+    }
+  };
+
   getRandomExercises = async (
     token: string,
     count?: number,
