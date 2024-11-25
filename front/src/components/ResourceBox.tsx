@@ -15,7 +15,7 @@ const ResourceBox: React.FC<ResourceBoxProps> = ({
   onClick,
 }) => {
   const displayedContent =
-    content.length > 350 ? `${content.slice(0, 350)}...` : content;
+    content.length > 280 ? `${content.slice(0, 280)}...` : content;
 
   return (
     <Box
