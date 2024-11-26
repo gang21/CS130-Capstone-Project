@@ -1,16 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import SignupPage from '../src/pages/SignupPage';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { MemoryRouter } from 'react-router-dom';
-// biome-ignore lint/style/useImportType: <explanation>
-import React from 'react';
-import '@testing-library/jest-dom';
 
 // Create a mock reducer
-const mockReducer = (state, action) => state;
+const mockReducer = (state = {}, action) => state;
 
 const renderWithProviders = (ui: React.ReactElement) => {
   const store = configureStore({ reducer: mockReducer });

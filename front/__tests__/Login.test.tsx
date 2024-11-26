@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import App from '../src/App';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import React from 'react';
 
 describe('Login Page', () => {
   it('renders login heading', () => {

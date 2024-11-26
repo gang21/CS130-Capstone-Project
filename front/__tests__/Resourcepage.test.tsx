@@ -6,12 +6,10 @@ import { createStore } from 'redux';
 import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter
 import React from 'react';
 import '@testing-library/jest-dom';
-
 // Mocking dependencies
 vi.mock('../redux/hook', () => ({
   useAppSelector: vi.fn(() => ({ token: 'mock-token' })),
 }));
-
 vi.mock('../src/api/apiSdk', () => ({
   default: vi.fn(() => ({
     getAllResources: vi.fn(() =>
@@ -42,13 +40,11 @@ vi.mock('../src/api/apiSdk', () => ({
     ),
   })),
 }));
-
 // Create a mock Redux store
 const mockReducer = (state, action) => state;
 const mockStore = createStore(mockReducer, {
   session: { token: 'mock-token' }, // Provide the initial state for session
 });
-
 describe('ResourcePage', () => {
   it('displays the correct resource content after fetching', async () => {
     render(
@@ -60,16 +56,13 @@ describe('ResourcePage', () => {
         </MemoryRouter>
       </Provider>,
     );
-
     // Wait for the resources to be fetched and rendered
     await waitFor(() => screen.getByText('Phishing'));
     await waitFor(() => screen.getByText('Fake job'));
-
     // Check if the resource text content is displayed
     expect(screen.getByText('Phishing')).toBeInTheDocument();
     expect(screen.getByText('Fake job')).toBeInTheDocument();
   });
-
   it('renders resource content correctly', async () => {
     render(
       <Provider store={mockStore}>
@@ -80,11 +73,9 @@ describe('ResourcePage', () => {
         </MemoryRouter>
       </Provider>,
     );
-
     // Wait for the resources to be fetched and rendered
     await waitFor(() => screen.getByText('Phishing'));
     await waitFor(() => screen.getByText('Fake job'));
-
     // Verify that text content is displayed for each resource
     expect(screen.getByText('Phishing')).toBeInTheDocument(); // category for first resource
     expect(screen.getByText('Fake job')).toBeInTheDocument(); // category for second resource
