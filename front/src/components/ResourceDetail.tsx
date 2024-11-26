@@ -74,7 +74,7 @@ const ResourceDetail: React.FC<ResourceDetailProps> = ({ resource }) => {
           >
             {resource.category}
           </Typography>
-          <Typography variant='body1' paragraph>
+          <Typography variant='body1' component='p'>
             {resource.content}
           </Typography>
 
