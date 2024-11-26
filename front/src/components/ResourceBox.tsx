@@ -5,7 +5,7 @@ interface ResourceBoxProps {
   category: string;
   content: string;
   imageUrl: string | ArrayBuffer; // Either a URL or Buffer data as a string
-  onClick: () => any;
+  onClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const ResourceBox: React.FC<ResourceBoxProps> = ({
