@@ -57,14 +57,14 @@ function PlayPage() {
   const currentIndexRef = useRef(currentIndex);
 
   function updateUserScore(newScore: number) {
-    api.updateScoreUser(token, userInfo._id, { overallScore: newScore }).then(
-      (user) => {
+    api
+      .updateScoreUser(token, userInfo._id, { overallScore: newScore })
+      .then((user) => {
         if (user) {
           dispatch(setUser(user));
           setScore(user.overallScore); // score will be updated, so it can be displayed
         }
-      },
-    );
+      });
   }
 
   useEffect(() => {
@@ -97,7 +97,7 @@ function PlayPage() {
       const answeredAsScam = dir === 'left';
       await childRefs[currentIndex].current?.swipe(dir); // Swipe the card!
       if (exercise.scam === answeredAsScam) {
-        updateUserScore(score + 1);
+        updateUserScore(score + 10);
       }
     }
   };
@@ -127,7 +127,9 @@ function PlayPage() {
             ref={childRefs[index]}
             key={card.message}
           >
-            <Container className='innerCard'>{card.message}</Container>
+            <Container className='innerCard'>
+              TYPE : {card.scam ? 'SCAM' : 'REAL'} {card.message}
+            </Container>
           </TinderCard>
         ))}
       </Container>
