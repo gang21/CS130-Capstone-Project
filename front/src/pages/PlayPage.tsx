@@ -127,9 +127,7 @@ function PlayPage() {
             ref={childRefs[index]}
             key={card.message}
           >
-            <Container className='innerCard'>
-              TYPE : {card.scam ? 'SCAM' : 'REAL'} {card.message}
-            </Container>
+            <Container className='innerCard'>{card.message}</Container>
           </TinderCard>
         ))}
       </Container>
