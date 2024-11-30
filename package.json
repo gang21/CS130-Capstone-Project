@@ -7,7 +7,7 @@
     "test": "npm --prefix ./front test",
     "check:frontend": "cd ./front && npm run build",
     "check:backend": "cd ./backend && npm run check",
-    "check": "concurrently 'npm run check:frontend' 'npm run check:backend'"
+    "check": "concurrently 'npm run check:frontend --output public' 'npm run check:backend'"
   },
   "devDependencies": {
     "concurrently": "^9.0.1",
