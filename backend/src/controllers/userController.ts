@@ -166,14 +166,14 @@ export class UserController {
 
       if (
         userUpdates.overallScore &&
-        userUpdates.overallScore >= 100 &&
-        existingUser.overallScore < 100
+        userUpdates.overallScore >= 1000 &&
+        existingUser.overallScore < 1000
       ) {
         try {
           await sendEmail(
             existingUser.email,
             'Congratulations!',
-            'You have reached 100 points! You are officially graduated from FraudNinja!',
+            'You have reached 1000 points! You are officially graduated from FraudNinja!',
           );
           console.log('Congratulations email sent successfully');
         } catch (error) {

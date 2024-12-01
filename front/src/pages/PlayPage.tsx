@@ -47,7 +47,7 @@ function PlayPage() {
   const SWIPE_THRESHOLD = 200; // pixels to trigger a swipe
   const [currentIndex, setCurrentIndex] = useState(exercises.length - 1);
   const currentIndexRef = useRef(currentIndex);
-  const threshold_graduation = 300;
+  const threshold_graduation = 1000;
 
   // Disable scrolling only for this specific page
   // useEffect(() => {
