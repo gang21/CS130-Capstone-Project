@@ -60,7 +60,7 @@ class ApiSdk {
     }
   };
 
-  updateScoreUser = async (
+  updateUser = async (
     token: string,
     id: string,
     user: Partial<User>,
@@ -71,23 +71,7 @@ class ApiSdk {
       });
       return data;
     } catch (error) {
-      console.error('Error updating user score:', error);
-      return null;
-    }
-  };
-
-  updateGraduateStatus = async (
-    token: string,
-    id: string,
-    user: Partial<User>,
-  ): Promise<User | null> => {
-    try {
-      const { data } = await this.http.put(`users/${id}`, user, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      return data;
-    } catch (error) {
-      console.error('Error updating user score:', error);
+      console.error('Error updating user', error);
       return null;
     }
   };

@@ -61,7 +61,7 @@ function PlayPage() {
   useEffect(() => {
     if (!hasFetched.current) {
       hasFetched.current = true;
-      api.getRandomExercises(token, 1).then((exercises) => {
+      api.getRandomExercises(token).then((exercises) => {
         setExercises(exercises);
         setCopyExercises(exercises);
       });
@@ -79,7 +79,7 @@ function PlayPage() {
 
   function updateUserScore(newScore: number) {
     api
-      .updateScoreUser(token, userInfo._id, { overallScore: newScore })
+      .updateUser(token, userInfo._id, { overallScore: newScore })
       .then((user) => {
         if (user) {
           dispatch(setUser(user));
@@ -193,7 +193,7 @@ function PlayPage() {
 
         // Perform the API call to update graduation status and send email for graduation
         api
-          .updateGraduateStatus(token, userInfo._id, {
+          .updateUser(token, userInfo._id, {
             graduated: true,
           })
           .then((user) => {
