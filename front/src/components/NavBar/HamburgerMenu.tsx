@@ -31,9 +31,6 @@ function HamburgerMenu({ onSignOutClick, userInfo }: HamburgerMenuProps) {
           </div>
         </IconButton>
         <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
-          <MenuItem onClick={handleClose}>
-            <NavButton label='Profile' href='/' inHamburger notImplemented />
-          </MenuItem>
           <MenuItem onClick={onSignOutClick}>
             <Button>Logout</Button>
           </MenuItem>
