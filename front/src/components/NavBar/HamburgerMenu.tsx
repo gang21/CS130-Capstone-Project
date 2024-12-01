@@ -2,7 +2,6 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, type MouseEvent } from 'react';
-import NavButton from './NavButton';
 import { Avatar, Button } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 import type { User } from '@shared_types';
