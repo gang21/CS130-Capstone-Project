@@ -39,12 +39,15 @@ function PlayPage() {
     feedback: '',
   });
   const [isComplete, setIsComplete] = useState(false);
+  const [hasGraduatedChecked, setHasGraduatedChecked] = useState(false);
+  const [isGraduating, setIsGraduating] = useState(false);
   const dispatch = useAppDispatch();
   const cardRef = useRef<HTMLDivElement>(null);
   const startPosRef = useRef({ x: 0, y: 0 });
   const SWIPE_THRESHOLD = 200; // pixels to trigger a swipe
   const [currentIndex, setCurrentIndex] = useState(exercises.length - 1);
   const currentIndexRef = useRef(currentIndex);
+  const threshold_graduation = 300;
 
   // Disable scrolling only for this specific page
   // useEffect(() => {
@@ -58,7 +61,7 @@ function PlayPage() {
   useEffect(() => {
     if (!hasFetched.current) {
       hasFetched.current = true;
-      api.getRandomExercises(token).then((exercises) => {
+      api.getRandomExercises(token, 1).then((exercises) => {
         setExercises(exercises);
         setCopyExercises(exercises);
       });
@@ -89,6 +92,18 @@ function PlayPage() {
     setCurrentIndex(exercises.length - 1);
     currentIndexRef.current = exercises.length - 1;
   }, [exercises]);
+
+  useEffect(() => {}, [
+    userInfo._id,
+    isComplete,
+    hasGraduatedChecked,
+    userInfo.graduated,
+    score,
+    token,
+    api,
+    isGraduating,
+    dispatch,
+  ]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
@@ -183,9 +198,29 @@ function PlayPage() {
     return <FullScreenSpinner />;
   }
 
-  if (currentIndex < 0) {
-    return <EndGame totalScore={score} />;
+  if (isComplete) {
+    if (!hasGraduatedChecked) {
+      if (!userInfo.graduated && score >= threshold_graduation) {
+        setIsGraduating(true);
+
+        // Perform the API call to update graduation status and send email for graduation
+        api
+          .updateGraduateStatus(token, userInfo._id, {
+            graduated: true,
+          })
+          .then((user) => {
+            if (user) {
+              dispatch(setUser(user));
+            }
+          });
+
+        setHasGraduatedChecked(true);
+      }
+    }
+
+    return <EndGame totalScore={score} isGraduating={isGraduating} />;
   }
+
   if (!currentExercise) {
     return null;
   }
