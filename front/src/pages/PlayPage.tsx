@@ -50,7 +50,7 @@ function PlayPage() {
   useEffect(() => {
     if (!hasFetched.current) {
       hasFetched.current = true;
-      api.getRandomExercises(token, 2).then((exercises) => {
+      api.getRandomExercises(token).then((exercises) => {
         setExercises(exercises);
         setCurrentIndex(exercises.length - 1);
         currentIndexRef.current = exercises.length - 1;
@@ -114,7 +114,8 @@ function PlayPage() {
   };
 
   const handleSwipe = (direction: 'left' | 'right') => {
-    if (currentIndex == null || currentIndex < 0) return;
+    if (currentIndex == null || currentIndex < 0 || !exercises[currentIndex])
+      return;
 
     const currentCard = exercises[currentIndex];
 
