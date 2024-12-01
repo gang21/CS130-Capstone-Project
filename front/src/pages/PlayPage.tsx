@@ -93,18 +93,6 @@ function PlayPage() {
     currentIndexRef.current = exercises.length - 1;
   }, [exercises]);
 
-  useEffect(() => {}, [
-    userInfo._id,
-    isComplete,
-    hasGraduatedChecked,
-    userInfo.graduated,
-    score,
-    token,
-    api,
-    isGraduating,
-    dispatch,
-  ]);
-
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
 
