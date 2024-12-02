@@ -6,6 +6,7 @@ body {
   font-family: 'Kalam', 'Quicksand', 'bold';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(255, 255, 255);
 }
 
 code {
