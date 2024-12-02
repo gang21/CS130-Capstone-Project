@@ -1,6 +1,13 @@
-import { Container, Typography, Paper, Button, Grid2 } from '@mui/material';
+import {
+  Container,
+  Typography,
+  Paper,
+  Button,
+  Grid2,
+  Box,
+} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import FraudNinja from '../images/FraudNinja.jpeg';
+import FraudNinja from '../images/Fraudninja.png';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -11,26 +18,18 @@ const HomePage = () => {
         sx={{
           padding: 3,
           boxShadow: (theme) => `0px 4px 10px ${theme.palette.primary.main}`,
-          // backgroundColor: '#f9f9ff',
-          backgroundColor: 'black',
+          backgroundColor: '#f9f9ff',
           borderRadius: 2,
         }}
       >
         <Grid2 container direction='column' alignItems='center'>
-          <img
-            src={FraudNinja}
-            alt='App Icon'
-            style={{ width: 550, height: 250 }}
-          />
-          <Typography
-            variant='h1'
-            fontSize={80}
-            margin={4}
-            align='center'
-            color='primary'
-          >
-            Welcome to the game FraudNinja!
-          </Typography>
+          <Box m={2}>
+            <img
+              src={FraudNinja}
+              alt='App Icon'
+              style={{ width: 550, height: 250 }}
+            />
+          </Box>
           <Grid2>
             <Button
               variant='contained'
@@ -39,9 +38,9 @@ const HomePage = () => {
               sx={{
                 fontSize: '1.5rem',
                 padding: '10px 30px',
-                backgroundColor: 'primary.main',
+                backgroundColor: 'secondary.main',
                 '&:hover': {
-                  backgroundColor: 'primary.dark',
+                  backgroundColor: 'secondary.dark',
                 },
               }}
             >

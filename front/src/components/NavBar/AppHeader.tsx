@@ -5,7 +5,7 @@ import NavButton from './NavButton';
 import HamburgerMenu from './HamburgerMenu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SchoolIcon from '@mui/icons-material/School';
-import FraudNinjaLogo from '../../images/FraudNinjaLogo.jpeg';
+import FraudNinjaLogo from '../../images/Fraudninja-long.png';
 import { useNavigate } from 'react-router-dom';
 
 interface AppHeaderProps {
@@ -28,12 +28,9 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onSignOutClick }) => {
             <img
               src={FraudNinjaLogo}
               alt='App Icon'
-              style={{ width: 160, height: 50 }}
+              style={{ width: 250, height: 50 }}
             />
           </IconButton>
-          {isLoggedIn && (
-            <LogoutIcon onClick={onSignOutClick} sx={{ cursor: 'pointer' }} />
-          )}
         </Typography>
 
         {isLoggedIn && (
@@ -58,11 +55,18 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onSignOutClick }) => {
               <Typography>
                 {userInfo.graduated && (
                   <SchoolIcon
-                    sx={{ ml: 0.5, color: '#c2b5d9', verticalAlign: 'middle' }}
+                    sx={{
+                      mr: 1,
+                      color: 'tertiary.dark',
+                      verticalAlign: 'middle',
+                    }}
                   />
                 )}
               </Typography>
             </Box>
+            {isLoggedIn && (
+              <LogoutIcon onClick={onSignOutClick} sx={{ cursor: 'pointer' }} />
+            )}
           </>
         )}
       </Toolbar>
