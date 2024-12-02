@@ -1,11 +1,4 @@
-import {
-  Container,
-  Typography,
-  Paper,
-  Button,
-  Grid2,
-  Box,
-} from '@mui/material';
+import { Container, Paper, Button, Grid2, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import FraudNinja from '../images/Fraudninja.png';
 
