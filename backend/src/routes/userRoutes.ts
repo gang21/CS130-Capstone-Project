@@ -120,68 +120,68 @@ export function createUserRouter(userClient: UserClient): express.Router {
    */
   router.get('/:id', userController.getById);
 
-/**
- * @swagger
- * /users/{id}:
- *   put:
- *     summary: Update a user's score or other properties.
- *     description: Update a user's score or other properties. Note that the header must include a valid JWT, so this endpoint cannot be tested directly from the "Try it out" section of this API documentation.
- *     tags:
- *       - Users
- *     security:
- *       - BearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         description: The ID of the user to update.
- *         schema:
- *           type: string
- *           example: "8DKZvZ9Wv9Hk9WEzGbQN"
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 description: The user's email address.
- *                 example: "newemail@example.com"
- *               username:
- *                 type: string
- *                 description: The user's chosen username.
- *                 example: "NewUsername"
- *               graduated:
- *                 type: boolean
- *                 description: Indicates if the user has graduated.
- *                 example: true
- *               overallScore:
- *                 type: integer
- *                 description: The user's updated score.
- *                 example: 500
- *             required:
- *               - email
- *               - username
- *               - graduated
- *               - overallScore
- *     responses:
- *       200:
- *         description: User updated successfully.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User'
- *       400:
- *         description: Invalid request payload or parameters.
- *       401:
- *         description: Unauthorized request. Token missing or invalid.
- *       404:
- *         description: User not found.
- *       500:
- *         description: Internal server error.
- */
+  /**
+   * @swagger
+   * /users/{id}:
+   *   put:
+   *     summary: Update a user's score or other properties.
+   *     description: Update a user's score or other properties. Note that the header must include a valid JWT, so this endpoint cannot be tested directly from the "Try it out" section of this API documentation.
+   *     tags:
+   *       - Users
+   *     security:
+   *       - BearerAuth: []
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         description: The ID of the user to update.
+   *         schema:
+   *           type: string
+   *           example: "8DKZvZ9Wv9Hk9WEzGbQN"
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               email:
+   *                 type: string
+   *                 description: The user's email address.
+   *                 example: "newemail@example.com"
+   *               username:
+   *                 type: string
+   *                 description: The user's chosen username.
+   *                 example: "NewUsername"
+   *               graduated:
+   *                 type: boolean
+   *                 description: Indicates if the user has graduated.
+   *                 example: true
+   *               overallScore:
+   *                 type: integer
+   *                 description: The user's updated score.
+   *                 example: 500
+   *             required:
+   *               - email
+   *               - username
+   *               - graduated
+   *               - overallScore
+   *     responses:
+   *       200:
+   *         description: User updated successfully.
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/User'
+   *       400:
+   *         description: Invalid request payload or parameters.
+   *       401:
+   *         description: Unauthorized request. Token missing or invalid.
+   *       404:
+   *         description: User not found.
+   *       500:
+   *         description: Internal server error.
+   */
   router.put('/:id', userController.update);
 
   return router;

@@ -8,7 +8,6 @@ import { ExerciseClient } from '../clients/exerciseClient'; // Ensure the correc
  *   description: API endpoints for managing exercises.
  */
 
-
 export function createExerciseRouter(
   exerciseClient: ExerciseClient,
 ): express.Router {
@@ -17,39 +16,39 @@ export function createExerciseRouter(
 
   /**
    * @swagger
-  * /exercises/all:
-  *   get:
-  *     summary: Get all exercises.
-  *     tags: [Exercises]
-  *     responses:
-  *       200:
-  *         description: A list of exercises. Note that the schema may be Email (as shown below) or the Text schema found under "Schemas".
-  *         content:
-  *           application/json:
-  *             schema:
-  *               type: array
-  *               items:
-  *                 $ref: '#/components/schemas/Email'
-  *       404:
-  *         description: No exercises found.
-  */
+   * /exercises/all:
+   *   get:
+   *     summary: Get all exercises.
+   *     tags: [Exercises]
+   *     responses:
+   *       200:
+   *         description: A list of exercises. Note that the schema may be Email (as shown below) or the Text schema found under "Schemas".
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 $ref: '#/components/schemas/Email'
+   *       404:
+   *         description: No exercises found.
+   */
   router.get('/all', exerciseController.getAllExercises);
   /**
-  * @swagger
-  * /exercises/random:
-  *   get:
-  *     summary: Get a random exercise.
-  *     tags: [Exercises]
-  *     responses:
-  *       200:
-  *         description: A single random exercise. Note that the schema may be Email (as shown below) or the Text schema found under "Schemas".
-  *         content:
-  *           application/json:
-  *             schema:
-  *               $ref: '#/components/schemas/Email'
-  *       404:
-  *         description: No exercises found.
-  */
+   * @swagger
+   * /exercises/random:
+   *   get:
+   *     summary: Get a random exercise.
+   *     tags: [Exercises]
+   *     responses:
+   *       200:
+   *         description: A single random exercise. Note that the schema may be Email (as shown below) or the Text schema found under "Schemas".
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/Email'
+   *       404:
+   *         description: No exercises found.
+   */
 
   router.get('/random', exerciseController.getRandomExercise);
 
