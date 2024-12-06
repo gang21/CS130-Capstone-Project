@@ -42,8 +42,16 @@ npm ci
 npm run check
 ```
 
+### Continuous Integration
+
 These scripts are triggered by PR opening/pushing. The build and lint checks are
 found in the
 [ci-cd.yml](https://github.com/gang21/CS130-Capstone-Project/blob/main/.github/workflows/ci-cd.yml)
 workflow file, while the style guide is enforced by
 [format.yml](https://github.com/gang21/CS130-Capstone-Project/blob/main/.github/workflows/format.yml).
+
+
+### Continuous Deployment
+Our continous deployment was found on vercel. In order to deploy the application, you must deploy first the [backend](https://cs-130-capstone-project-1jckmp8vz-gang22s-projects.vercel.app), and then the [frontend](https://cs-130-capstone-project-jj71cacti-gang22s-projects.vercel.app). The actual application will be hosted on the frontend. 
+
+Note: According to Vercel's free user policy, deployment will not be able to be shared with others unless we move to a payment option.  Thus, in order to run the application at this time, please refer to the installing and running option to run the application locally. 
