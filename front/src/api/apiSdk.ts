@@ -16,7 +16,7 @@ class ApiSdk {
    */
   constructor(_root = envConfigs['development'].tsApiRoot) {
     this.http = axios.create({
-      baseURL: _root,
+      baseURL: 'https://fraudninja.onrender.com',
     });
   }
 
