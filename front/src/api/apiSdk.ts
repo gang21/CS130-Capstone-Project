@@ -16,7 +16,11 @@ class ApiSdk {
    */
   constructor(_root = envConfigs['development'].tsApiRoot) {
     this.http = axios.create({
+<<<<<<< HEAD
       baseURL: 'https://fraudninja.onrender.com',
+=======
+      baseURL: 'https://cs130-capstone-project-api.onrender.com',
+>>>>>>> 814ad1e62699e39c29df13c8d2a6a4678e6b9edf
     });
   }
 
