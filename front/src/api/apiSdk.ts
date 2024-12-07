@@ -1,6 +1,12 @@
 import axios, { type AxiosInstance } from 'axios';
 import { envConfigs } from '../configs/env';
-import type { Credentials, Exercise, Resource, User } from '@shared_types';
+import type {
+  Credentials,
+  Email as ExerciseEmail,
+  Text as ExerciseText,
+  Resource,
+  User,
+} from '@shared_types';
 
 class ApiSdk {
   private readonly http: AxiosInstance;
@@ -54,7 +60,7 @@ class ApiSdk {
     }
   };
 
-  updateScoreUser = async (
+  updateUser = async (
     token: string,
     id: string,
     user: Partial<User>,
@@ -65,7 +71,7 @@ class ApiSdk {
       });
       return data;
     } catch (error) {
-      console.error('Error updating user score:', error);
+      console.error('Error updating user', error);
       return null;
     }
   };
@@ -73,7 +79,7 @@ class ApiSdk {
   getRandomExercises = async (
     token: string,
     count?: number,
-  ): Promise<Exercise[]> => {
+  ): Promise<(ExerciseEmail | ExerciseText)[]> => {
     try {
       const response = await this.http.get(
         `exercises${count ? '?count=' + count : ''}`,

@@ -2,9 +2,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, type MouseEvent } from 'react';
-import NavButton from './NavButton';
 import { Avatar, Button } from '@mui/material';
-import { deepPurple } from '@mui/material/colors';
 import type { User } from '@shared_types';
 
 interface HamburgerMenuProps {
@@ -25,15 +23,12 @@ function HamburgerMenu({ onSignOutClick, userInfo }: HamburgerMenuProps) {
       <div>
         <IconButton onClick={handleClick} disableRipple>
           <div className=''>
-            <Avatar sx={{ bgcolor: deepPurple[500] }}>
+            <Avatar sx={{ bgcolor: 'tertiary.dark' }}>
               {userInfo.username[0].toUpperCase()}
             </Avatar>
           </div>
         </IconButton>
         <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
-          <MenuItem onClick={handleClose}>
-            <NavButton label='Profile' href='/' inHamburger notImplemented />
-          </MenuItem>
           <MenuItem onClick={onSignOutClick}>
             <Button>Logout</Button>
           </MenuItem>
