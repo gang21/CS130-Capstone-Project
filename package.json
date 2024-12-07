@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "nodemailer": "^6.9.16",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "user-event": "^3.0.3"
   }
 }
